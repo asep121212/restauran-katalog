@@ -25,14 +25,14 @@ Scenario('liking one restaurants', async ({ I }) => {
     const firstRestaurantTitle = await I.grabTextFrom(firstRestaurant);
     I.click(firstRestaurant);
 
-    I.wait(3);
-
+    I.waitForElement('#likeButton', 30);
     I.seeElement('#likeButton');
     I.click('#likeButton');
 
     I.amOnPage('/#/favorite');
+
     I.seeElement('.box');
-    const likedRestaurantTitle = await I.grabTextFrom('.law_hren ');
+    const likedRestaurantTitle = await I.grabTextFrom('.law_hren');
 
     assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
 
@@ -57,11 +57,21 @@ Scenario('unliking one restaurant', async ({ I }) => {
   I.click('#likeButton');
 
   I.amOnPage('/#/favorite');
-  I.wait(3);
-  I.seeElement('.law_hren a');
+  I.seeElement('.box');
 
-  const firstRestaurantlike = locate('.law_hren a').first();
-  const likedRestaurantTitle = await I.grabTextFrom('.law_hren ');
-  assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
+  const unlikedRestaurantsTitles =  await I.grabTextFrom('.law_hren ');
+  assert.strictEqual(firstRestaurantTitle, unlikedRestaurantsTitles);
+
  
+  I.seeElement('.law_hren a');
+  await I.grabTextFrom(firstRestaurant);
+  I.click(firstRestaurant);
+
+    I.seeElement('#likeButton');
+    I.click('#likeButton');
+
+
+    I.amOnPage('/#/favorite');
+    I.see('Tidak ada restaurant untuk ditampilkan', '.restaurant-item__not__found');
+
 });

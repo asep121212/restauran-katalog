@@ -1,9 +1,11 @@
 import API_ENDPOINT from '../../globals/api-endpoint';
 import * as law from './biznes-creator';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 const createRestaurantMenu = (restaurant) => `
   <div class="box">
-    <img class="imgBx" src="${API_ENDPOINT.IMAGE.LARGE(restaurant.pictureId)}" alt="restaurant picture" />
+    <img class="imgBx " src="${API_ENDPOINT.IMAGE.LARGE(restaurant.pictureId)}" alt="restaurant picture" />
     <div class="content">
       <h2 >${restaurant.name}</h2>
       <span class="rating" aria-label="rating ${restaurant.rating}"> ⭐ ${restaurant.rating} </span>
@@ -18,7 +20,7 @@ const createDetailRestaurant = (restaurant) => `
   <div class="container-detail">
     <img  src="${API_ENDPOINT.IMAGE.MEDIUM(restaurant.pictureId)}" alt="resataurant picture " class="image" >
     <div class="konten-restaurant">
-      <h1 class="name" >${restaurant.name}</h1>
+      <h1 class="law_hren" >${restaurant.name}</h1>
       <div class = "card">
       <h4 >Kategori : </h4>
       <p>${law.createRestaurantDetailCategories(restaurant).join(', ')}</p>

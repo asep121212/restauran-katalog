@@ -18,21 +18,19 @@ describe('Unliking A Restaurant', () => {
   it('Should display unlike widget when the restaurant has been liked', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
 
-    expect(document.querySelector('[aria-label="hapus dari warteg favorit"]'))
-      .toBeTruthy();
+    expect(document.querySelector('[aria-label="hapus dari noordfoodies favorit"]')).toBeTruthy();
   });
 
   it('Should not display unlike widget when the restaurant has been liked', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
 
-    expect(document.querySelector('[aria-label="tambah ke warteg favorit"]'))
-      .toBeFalsy();
+    expect(document.querySelector('[aria-label="tambah ke noordfoodies favorit"]')).toBeFalsy();
   });
 
   it('Should be able to remove liked restaurant from the list', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
 
-    document.querySelector('[aria-label="hapus dari warteg favorit"]').dispatchEvent(new Event('click'));
+    document.querySelector('[aria-label="hapus dari noordfoodies favorit"]').dispatchEvent(new Event('click'));
 
     expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([]);
   });
@@ -42,7 +40,7 @@ describe('Unliking A Restaurant', () => {
 
     await FavoriteRestaurantIdb.deleteRestaurant(1);
 
-    document.querySelector('[aria-label="hapus dari warteg favorit"]').dispatchEvent(new Event('click'));
+    document.querySelector('[aria-label="hapus dari noordfoodies favorit"]').dispatchEvent(new Event('click'));
 
     expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([]);
   });

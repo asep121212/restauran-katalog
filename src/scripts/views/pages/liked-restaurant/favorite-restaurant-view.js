@@ -14,10 +14,10 @@ class FavoriteRestaurantView {
     this.showFavoriteRestaurant(restaurants);
   }
 
-  showFavoriteRestaurants(restaurant = []) {
+  showFavoriteRestaurants(restaurants = []) {
     let html;
-    if (restaurant.length) {
-      html = restaurant.reduce((carry, restaurant) => carry.concat(createRestaurantMenu(restaurant)), '');
+    if (restaurants.length) {
+      html = restaurants.reduce((carry, restaurant) => carry.concat(createRestaurantMenu(restaurant)), '');
     } else {
       html = this._getEmptyRestaurantTemplate();
     }

@@ -12,21 +12,22 @@ describe('Liking A Restaurant', () => {
 
   it('Should show the like button when the restaurant has not been liked before', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
-    expect(document.querySelector('[aria-label="tambah ke warteg favorit"]'))
-      .toBeTruthy();
+    expect(document.querySelector('[aria-label="tambah ke noordfoodies favorit"]'))
+    .toBeTruthy();
   });
   
   it('should not show the unlike button when the restaurant has not been liked before', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
 
-    expect(document.querySelector('[aria-label="hapus dari warteg favorit"]')).toBeFalsy();
+    expect(document.querySelector('[aria-label="hapus dari noordfoodies favorit"]'))
+    .toBeFalsy();
   });
 
   it('Should be able to like the restaurant', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
 
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
-    const restaurant = await FavoriteRestaurantIdb.getRestaurant(1);
+    const restaurant = await FavoriteRestaurantIdb.fileRestaurant(1);
 
     expect(restaurant).toEqual({ id: 1 });
 
@@ -36,7 +37,7 @@ describe('Liking A Restaurant', () => {
   it('Should not add a restaurant again when its already liked', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
 
-    await FavoriteRestaurantIdb.putRestaurant({ id: 1 });
+    await FavoriteRestaurantIdb.lawRestaurant({ id: 1 });
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
     expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([{ id: 1 }]);
     FavoriteRestaurantIdb.deleteRestaurant(1);
@@ -44,9 +45,7 @@ describe('Liking A Restaurant', () => {
 
   it('Should not add a restaurant when it has no id', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({});
-
     document.querySelector('#likeButton').dispatchEvent(new Event('click'));
-    
     expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([]);
   });
 })
