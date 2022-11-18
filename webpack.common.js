@@ -3,7 +3,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 
@@ -70,9 +69,6 @@ module.exports = {
           },
         },
       ],
-    }),
-    new WorkboxWebpackPlugin.GenerateSW({
-      swDest: './sw.bundle.js',
     }),
     new ImageminWebpackPlugin({
       plugins: [

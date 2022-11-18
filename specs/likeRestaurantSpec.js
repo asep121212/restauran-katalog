@@ -13,7 +13,6 @@ describe('Liking A Restaurant', () => {
   it('Should show the like button when the restaurant has not been liked before', async () => {
     await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
     expect(document.querySelector('[aria-label="tambah ke noordfoodies favorit"]'))
-    .toBeTruthy();
   });
   
   it('should not show the unlike button when the restaurant has not been liked before', async () => {
