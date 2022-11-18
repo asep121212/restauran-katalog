@@ -2,8 +2,8 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const target = path.resolve(__dirname, 'src/public/heros/');
-const destinnation = path.resolve(__dirname, 'dist/heros/');
+const target = path.resolve(__dirname, 'src/public/icons/');
+const destinnation = path.resolve(__dirname, 'dist/icons/');
 
 if (!fs.existsSync(destinnation)) {
   fs.mkdirSync(destinnation);

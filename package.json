@@ -8,7 +8,9 @@
     "build": "webpack --config webpack.prod.js",
     "test": "karma start",
     "e2e": "codeceptjs run --steps",
-    "build-image": "node sharp.js"
+    "build-image": "node sharp.js",
+    "serve": "http-server dist --port 9000",
+    "build-serve": "npm run build && npm run serve"
   },
   "keywords": [],
   "author": "ari",
