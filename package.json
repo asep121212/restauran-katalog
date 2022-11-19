@@ -10,6 +10,7 @@
     "e2e": "codeceptjs run --steps",
     "build-image": "node sharp.js",
     "serve": "http-server dist --port 9000",
+    "final-build": "npm run build && npm run build-image",
     "build-serve": "npm run build && npm run serve"
   },
   "keywords": [],
