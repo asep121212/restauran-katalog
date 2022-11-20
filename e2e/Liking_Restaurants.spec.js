@@ -59,13 +59,12 @@ Scenario('unliking one restaurant', async ({ I }) => {
   I.amOnPage('/#/favorite');
   I.seeElement('.box');
 
-  const unlikedRestaurantsTitles =  await I.grabTextFrom('.law_hren ');
-  assert.strictEqual(firstRestaurantTitle, unlikedRestaurantsTitles);
+  const likedRestaurantTitle =  await I.grabTextFrom('.law_hren ');
+  assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
 
- 
-  I.seeElement('.law_hren a');
-  await I.grabTextFrom(firstRestaurant);
-  I.click(firstRestaurant);
+  const likeRestaurant = locate('.law_hren a').first();
+  I.click(likeRestaurant);
+
 
     I.seeElement('#likeButton');
     I.click('#likeButton');
