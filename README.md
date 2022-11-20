@@ -1,1 +1,1 @@
-# restauran-katalog-pwa
+# restauran-katalog
