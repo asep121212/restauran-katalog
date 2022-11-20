@@ -1,11 +1,12 @@
 import FavoriteRestaurantIdb from '../src/scripts/data/favorite-restaurant-idb';
 import * as TestFactories from './helpers/testFactories';
 
+describe('Unliking A Restaurant', () => {
 const addLikeButtonContainer = () => {
   document.body.innerHTML = '<div id="likeButtonContainer"></div>';
 };
 
-describe('Unliking A Restaurant', () => {
+
   beforeEach(async () => {
     addLikeButtonContainer();
     await FavoriteRestaurantIdb.lawRestaurant({ id: 1 });
@@ -15,26 +16,28 @@ describe('Unliking A Restaurant', () => {
     await FavoriteRestaurantIdb.deleteRestaurant(1);
   });
 
-  it('Should display unlike widget when the restaurant has been liked', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
+  it('should display unlike widget when the restaurant has been liked', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ 'restaurant': { id: 1 } });
 
-    expect(document.querySelector('[aria-label="hapus dari noordfoodies favorit"]'))
-
+    expect(document.querySelector('[aria-label="unlike this noordfoodies"]'))
   });
 
-  it('Should not display unlike widget when the restaurant has been liked', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
+  it('should not display like widget when the restaurant has been liked', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ 'restaurant': { id: 1 } });
 
-    expect(document.querySelector('[aria-label="tambah ke noordfoodies favorit"]'))
+    expect(document.querySelector('[aria-label="like this noordfoodies"]')).toBeFalsy();
   });
 
-  it('Should not throw error if the unliked restaurant is not in the list', async () => {
-    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ id: 1 });
+ 
+    
+  it('should not throw error if the unliked noordfoodies is not in the list', async () => {
+    await TestFactories.createFavoriteButtonPresenterWithRestaurant({ 'restaurant': { id: 1 } });
 
     await FavoriteRestaurantIdb.deleteRestaurant(1);
 
-    document.querySelector('[aria-label="hapus dari noordfoodies favorit"]')
-
+    document.querySelector('[aria-label="unlike this noordfoodies"]')
     expect(await FavoriteRestaurantIdb.getAllRestaurants()).toEqual([]);
   });
+
 });
+
